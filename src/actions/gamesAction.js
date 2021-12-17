@@ -8,21 +8,19 @@ const fetchGames = (userData) => {
         payload: userData,
     };
 };
-
 fetchGames({ user: "name" });
-
 
 export const loadGames = () => async (dispatch) => {
     //FETCH AXIOS
-    const popularData = await axios.get(popularGamesURL())
-    const newGameData = await axios.get(newGamesURL())
-    const upcomingData = await axios.get(upcomingGamesURL())
+    const popularData = await axios.get(popularGamesURL());
+    const newGamesData = await axios.get(newGamesURL());
+    const upcomingData = await axios.get(upcomingGamesURL());
     dispatch({
-        type: "FETCH GAMES",
-        payload:{
-            pupular: popularData.data.results,
-            upcoming: upcomingData.data.results,
-            newGames: newGameData.data.results,
-        }
-    })
-}
+      type: "FETCH_GAMES",
+      payload: {
+        popular: popularData.data.results,
+        upcoming: upcomingData.data.results,
+        newGames: newGamesData.data.results,
+      },
+    });
+};
